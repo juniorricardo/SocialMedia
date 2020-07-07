@@ -1,7 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Linq;
+using SocialMedia.Core.DTOs;
 using SocialMedia.Core.Entities;
 using SocialMedia.Core.Interfaces;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SocialMedia.Api.Controllers
@@ -12,25 +17,30 @@ namespace SocialMedia.Api.Controllers
     {
 
         private readonly IPostRepository _postRepository;
+        private readonly IMapper _mapper;
         private readonly ILogger<PostController> _logger;
 
         public PostController(IPostRepository postRepository,
-                              ILogger<PostController> logger)
+                              ILogger<PostController> logger,
+                              IMapper mapper)
         {
             _postRepository = postRepository;
             _logger = logger;
+            _mapper = mapper;
         }
 
-        // GET  api/post
+        // GET  api/postDto
         [HttpGet]
         public async Task<IActionResult> GetPosts()
         {
             _logger.LogInformation("Obteniendo los Posts.");
             var posts = await _postRepository.GetPosts();
-            return Ok(posts);
+
+            var postDtos = _mapper.Map<IEnumerable<PostDTO>>(posts);
+            return Ok(postDtos);
         }
 
-        // GET  api/post/1
+        // GET  api/postDto/1
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPost(int id)
         {
@@ -40,15 +50,18 @@ namespace SocialMedia.Api.Controllers
                 _logger.LogWarning($"El Post con el Id {id}, no ha sido encontrado.");
                 return NotFound();
             }
-            return Ok(post);
+            var postDto = _mapper.Map<PostDTO>(post);
+            return Ok(postDto);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(Post post)
+        public async Task<IActionResult> Post(PostDTO postDto)
         {
+            var post = _mapper.Map<Post>(postDto);
+
             await _postRepository.InsertPost(post);
             _logger.LogInformation($"Insertando una publicacion. {post}");
-            return Ok(post);
+            return Ok(postDto);
         }
     }
 }
