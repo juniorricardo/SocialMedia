@@ -63,5 +63,23 @@ namespace SocialMedia.Api.Controllers
             _logger.LogInformation($"Insertando una publicacion. {post}");
             return Ok(postDto);
         }
+
+        [HttpPut]
+        public async Task<IActionResult> Put(int id, PostDTO postDto)
+        {
+            var post = _mapper.Map<Post>(postDto);
+            post.PostId = id;
+
+            await _postRepository.UpdatePost(post);
+
+            _logger.LogInformation($"Actualizando una publicacion. {post}");
+            return Ok(postDto);
+        }
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await _postRepository.DeletePost(id);
+            return Ok(result);
+        }
     }
 }
