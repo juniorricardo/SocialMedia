@@ -1,12 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json.Linq;
 using SocialMedia.Core.DTOs;
 using SocialMedia.Core.Entities;
 using SocialMedia.Core.Interfaces;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace SocialMedia.Api.Controllers
@@ -29,7 +27,7 @@ namespace SocialMedia.Api.Controllers
             _mapper = mapper;
         }
 
-        // GET  api/postDto
+        // GET  api/post
         [HttpGet]
         public async Task<IActionResult> GetPosts()
         {
@@ -40,7 +38,7 @@ namespace SocialMedia.Api.Controllers
             return Ok(postDtos);
         }
 
-        // GET  api/postDto/1
+        // GET  api/post/1
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPost(int id)
         {

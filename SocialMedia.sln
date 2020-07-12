@@ -11,9 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialMedia.Infrastructure"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F856A231-5AC0-4FAB-B0C9-99C70FF20F61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialMedia.UnitTest", "SocialMedia.UnitTest\SocialMedia.UnitTest.csproj", "{32D2A6D1-4995-4A26-A94A-E229C5D2018D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialMedia.UnitTest", "SocialMedia.UnitTest\SocialMedia.UnitTest.csproj", "{32D2A6D1-4995-4A26-A94A-E229C5D2018D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialMedia.IntegrationTests", "SocialMedia.IntegrationTests\SocialMedia.IntegrationTests.csproj", "{DEDE0C6F-4DF9-4C46-8A81-DD34E1043276}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialMedia.IntegrationTests", "SocialMedia.IntegrationTests\SocialMedia.IntegrationTests.csproj", "{DEDE0C6F-4DF9-4C46-8A81-DD34E1043276}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary1", "ClassLibrary1\ClassLibrary1.csproj", "{A7FE3BF0-0B5E-4104-9623-37B439238DCB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{DEDE0C6F-4DF9-4C46-8A81-DD34E1043276}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DEDE0C6F-4DF9-4C46-8A81-DD34E1043276}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DEDE0C6F-4DF9-4C46-8A81-DD34E1043276}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7FE3BF0-0B5E-4104-9623-37B439238DCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7FE3BF0-0B5E-4104-9623-37B439238DCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7FE3BF0-0B5E-4104-9623-37B439238DCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7FE3BF0-0B5E-4104-9623-37B439238DCB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
