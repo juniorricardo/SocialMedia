@@ -57,5 +57,6 @@ namespace SocialMedia.Infrastructure.Repositories
             int rows = await _context.SaveChangesAsync();
             return rows > 0;
         }
+
     }
 }

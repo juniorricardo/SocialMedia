@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SocialMedia.Api.Response;
 using SocialMedia.Core.DTOs;
 using SocialMedia.Core.Entities;
 using SocialMedia.Core.Interfaces;
@@ -35,7 +36,9 @@ namespace SocialMedia.Api.Controllers
             var posts = await _postRepository.GetPosts();
 
             var postDtos = _mapper.Map<IEnumerable<PostDTO>>(posts);
-            return Ok(postDtos);
+
+            var response = new ApiResponse<IEnumerable<PostDTO>>(postDtos);
+            return Ok(response);
         }
 
         // GET  api/post/1
@@ -49,7 +52,8 @@ namespace SocialMedia.Api.Controllers
                 return NotFound();
             }
             var postDto = _mapper.Map<PostDTO>(post);
-            return Ok(postDto);
+            var response = new ApiResponse<PostDTO>(postDto);
+            return Ok(response);
         }
 
         [HttpPost]
@@ -59,25 +63,34 @@ namespace SocialMedia.Api.Controllers
 
             await _postRepository.InsertPost(post);
             _logger.LogInformation($"Insertando una publicacion. {post}");
-            return Ok(postDto);
+
+            postDto = _mapper.Map<PostDTO>(post);
+            var response = new ApiResponse<PostDTO>(postDto);
+
+            return Ok(response);
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, PostDTO postDto)
         {
             var post = _mapper.Map<Post>(postDto);
             post.PostId = id;
 
-            await _postRepository.UpdatePost(post);
+            var result = await _postRepository.UpdatePost(post);
+
+            var response = new ApiResponse<bool>(result);
 
             _logger.LogInformation($"Actualizando una publicacion. {post}");
-            return Ok(postDto);
+
+            return Ok(response);
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _postRepository.DeletePost(id);
-            return Ok(result);
+
+            var response = new ApiResponse<bool>(result);
+            return Ok(response);
         }
     }
 }
