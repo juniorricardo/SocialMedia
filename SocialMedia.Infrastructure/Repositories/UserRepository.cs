@@ -11,10 +11,8 @@ namespace SocialMedia.Infrastructure.Repositories
     {
         private readonly SocialMediaContext _context;
 
-        public UserRepository(SocialMediaContext context)
-        {
-            _context = context;
-        }
+        public UserRepository(SocialMediaContext context) => _context = context;
+        
 
         public async Task<IEnumerable<User>> GetUsers()
         {

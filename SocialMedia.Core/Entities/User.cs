@@ -18,7 +18,6 @@ namespace SocialMedia.Core.Entities
         public DateTime DateBirthday { get; set; }
         public string Telephone { get; set; }
         public bool IsActive { get; set; }
-
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
     }

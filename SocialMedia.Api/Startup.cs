@@ -1,3 +1,4 @@
+using System;
 using AutoMapper;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
@@ -11,7 +12,6 @@ using SocialMedia.Core.Services;
 using SocialMedia.Infrastructure.Data;
 using SocialMedia.Infrastructure.Filters;
 using SocialMedia.Infrastructure.Repositories;
-using System;
 
 namespace SocialMedia.Api
 {
