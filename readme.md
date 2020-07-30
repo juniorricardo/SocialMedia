@@ -1,8 +1,8 @@
-# [Repo name] made with :heart:,:coffee: and some :beer:
+# [SocialMedia] made with :heart:,:coffee: and some :beer:
 
 [here we add the necesary badges, here are the ones I say we always need]
 
-![License](https://img.shields.io/github/license/<User>/<Repo>.svg) ![Issues](https://img.shields.io/github/issues/<User>/<Repo>.svg) ![forks](https://img.shields.io/github/forks/<User>/<Repo>) ![stars](https://img.shields.io/github/stars/<User>/<Repo>) ![size](https://img.shields.io/github/repo-size/<User>/<Repo>)
+![License](https://img.shields.io/github/license/juniorricardo/SocialMedia.svg) ![Issues](https://img.shields.io/github/issues/juniorricardo/SocialMedia.svg) ![forks](https://img.shields.io/github/forks/juniorricardo/SocialMedia) ![stars](https://img.shields.io/github/stars/juniorricardo/SocialMedia) ![size](https://img.shields.io/github/repo-size/juniorricardo/SocialMedia)
 
 [short description of the repo]
 
@@ -20,13 +20,13 @@ just for fun and learning
 
 ```bash
 
-> git clone https://github.com/<User>/<Repo>
+>  git clone https://github.com/juniorricardo/SocialMedia
 
->  cd  <Repo>
+>  cd  SocialMedia
 
-> npm install
+>  dotnet restore
 
-> npm start
+>  dotnet run
 
 ```
 
@@ -40,4 +40,4 @@ This project is getting upgrades in my free time if there is a problem please cr
 
 [Here you simply, add your repos license name]
 
-- Licensed under [MIT License](https://github.com/<User>/<Repo>/blob/master/LICENSE)
+- Licensed under [MIT License](https://github.com/juniorricardo/SocialMedia/LICENSE)
