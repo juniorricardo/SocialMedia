@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SocialMedia.Core.Entities;
@@ -13,34 +11,41 @@ namespace SocialMedia.Infrastructure.Repositories
     {
         private readonly SocialMediaContext _context;
         private DbSet<T> _entities;
+
         public BaseRespository(SocialMediaContext context)
         {
             _context = context;
             _entities = _context.Set<T>();
         }
+
         public async Task<IEnumerable<T>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _entities.ToListAsync();
         }
+
+        public async Task<T> GetById(int id)
+        {
+            return await _entities.FindAsync(id);
+        }
+
         public async Task Add(T entity)
         {
-            throw new NotImplementedException();
+            _entities.Add(entity);
+            await _context.SaveChangesAsync();
+        }
+        public async Task Update(T entity)
+        {
+            _entities.Update(entity);
+            await _context.SaveChangesAsync();
         }
 
         public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            T entity = await GetById(id);
+            _context.Remove(entity);
+            await _context.SaveChangesAsync();
         }
 
-
-        public async Task<T> GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task Update(T entity)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
+

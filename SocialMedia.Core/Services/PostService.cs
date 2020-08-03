@@ -8,32 +8,24 @@ namespace SocialMedia.Core.Services
 {
     public class PostService : IPostService
     {
-        private readonly IPostRepository _postRepository;
-        private readonly IUserRepository _userRepository;
-        public PostService(IPostRepository postRepository,
-                           IUserRepository userRespository)
+        private readonly IUnitOfWork _unitOfWork;
+        public PostService(IUnitOfWork unitOfWork)
         {
-            _postRepository = postRepository;
-            _userRepository = userRespository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<IEnumerable<Post>> GetPosts()
         {
-            return await _postRepository.GetPosts();
+            return await _unitOfWork.PostRespository.GetAll();
         }
         public async Task<Post> GetPost(int id)
         {
-            return await _postRepository.GetPost(id);
-        }
-
-        public async Task<bool> DeletePost(int id)
-        {
-            return await _postRepository.DeletePost(id);
+            return await _unitOfWork.PostRespository.GetById(id);
         }
 
         public async Task InsertPost(Post post)
         {
-            var user = await _userRepository.GetUser(post.UserId);
+            var user = await _unitOfWork.UserRespository.GetById(post.UserId);
             if (user == null)
             {
                 throw new Exception("El usuario no existe.");
@@ -43,12 +35,18 @@ namespace SocialMedia.Core.Services
                 throw new Exception("Contenido no permitido.");
             }
 
-            await _postRepository.InsertPost(post);
+            await _unitOfWork.PostRespository.Add(post);
         }
 
         public async Task<bool> UpdatePost(Post post)
         {
-            return await _postRepository.UpdatePost(post);
+            await _unitOfWork.PostRespository.Update(post);
+            return true;
+        }
+        public async Task<bool> DeletePost(int id)
+        {
+            await _unitOfWork.PostRespository.Delete(id);
+            return true;
         }
     }
 }
