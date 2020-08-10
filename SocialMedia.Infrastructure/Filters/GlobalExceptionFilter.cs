@@ -9,13 +9,13 @@ namespace SocialMedia.Infrastructure.Filters
     {
         public void OnException(ExceptionContext context)
         {
-            if (context.GetType() == typeof(BusinessException))
+            if (context.Exception.GetType() == typeof(BusinessException))
             {
                 var exception = (BusinessException)context.Exception;
                 var validation = new
                 {
-                    Status = 400,
-                    Title = "Bad request",
+                    Status = (int)HttpStatusCode.BadRequest,
+                    Title = HttpStatusCode.BadRequest.ToString(),
                     Detail = exception.Message
                 };
 
