@@ -29,14 +29,19 @@ namespace SocialMedia.Api
         {
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-            services.AddControllers().AddNewtonsoftJson(option =>
+            services.AddControllers(options =>
+                {
+                    options.Filters.Add<GlobalExceptionFilter>();
+                })
+                .AddNewtonsoftJson(option =>
                 {
                     option.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
                 }
-            ).ConfigureApiBehaviorOptions(options =>
-            {
-                // options.SuppressModelStateInvalidFilter = true;
-            });
+                ).ConfigureApiBehaviorOptions(options =>
+                {
+                    // options.SuppressModelStateInvalidFilter = true;
+                }
+            );
 
             // ConnectionString
             services.AddDbContext<SocialMediaContext>(options =>

@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Enummerations\" />
-    <Folder Include="Exceptions\" />
   </ItemGroup>
 
 </Project>
