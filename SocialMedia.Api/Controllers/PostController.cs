@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -30,7 +31,7 @@ namespace SocialMedia.Api.Controllers
 
         // GET  api/post
         [HttpGet]
-        public IActionResult GetPosts()
+        public IActionResult GetPosts(int? userId, DateTime? date, string description)
         {
             _logger.LogInformation("Obteniendo los Posts.");
             var posts = _postService.GetPosts();

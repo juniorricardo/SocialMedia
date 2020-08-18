@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -44,7 +43,6 @@ namespace SocialMedia.Infrastructure.Repositories
             T entity = await GetById(id);
             _context.Remove(entity);
         }
-
     }
 }
 

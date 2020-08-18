@@ -351,3 +351,6 @@ MigrationBackup/
 
 //Carpetas
 **noSubir/
+
+# JetBrains Rider 2020 cache/options directory
+.idea/
