@@ -14,6 +14,7 @@ namespace SocialMedia.Api
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    
                     webBuilder.UseStartup<Startup>();
                 });
     }
