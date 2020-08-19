@@ -15,14 +15,13 @@ namespace SocialMedia.Api.Controllers
     [ApiController]
     public class PostController : ControllerBase
     {
-
         private readonly IPostService _postService;
         private readonly IMapper _mapper;
         private readonly ILogger<PostController> _logger;
 
         public PostController(IPostService postService,
-                              ILogger<PostController> logger,
-                              IMapper mapper)
+            ILogger<PostController> logger,
+            IMapper mapper)
         {
             _postService = postService;
             _logger = logger;
@@ -35,7 +34,6 @@ namespace SocialMedia.Api.Controllers
         {
             _logger.LogInformation("Obteniendo los Posts.");
             var posts = _postService.GetPosts();
-
             var postDtos = _mapper.Map<IEnumerable<PostDTO>>(posts);
 
             var response = new ApiResponse<IEnumerable<PostDTO>>(postDtos);
@@ -52,6 +50,7 @@ namespace SocialMedia.Api.Controllers
                 _logger.LogWarning($"El Post con el Id {id}, no ha sido encontrado.");
                 return NotFound();
             }
+
             var postDto = _mapper.Map<PostDTO>(post);
             var response = new ApiResponse<PostDTO>(postDto);
             return Ok(response);
@@ -94,6 +93,5 @@ namespace SocialMedia.Api.Controllers
             var response = new ApiResponse<bool>(result);
             return Ok(response);
         }
-
     }
 }
