@@ -349,7 +349,7 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
-//Carpetas
+#Carpetas
 **noSubir/
 
 # JetBrains Rider 2020 cache/options directory
