@@ -34,9 +34,12 @@ namespace SocialMedia.Core.Services
             }
 
             var userPosts = await _unitOfWork.PostRespository.GetPostsByUser(user.Id);
-            if (userPosts.Count() < 10)
+            List<Post> list = new List<Post>();
+            foreach (var userPost in userPosts) list.Add(userPost);
+            IEnumerable<Post> enumerable = userPosts as Post[] ?? list.ToArray();
+            if (enumerable.Count() < 10)
             {
-                var lastPost = userPosts.OrderBy(u => u.Date).LastOrDefault();
+                var lastPost = enumerable.OrderBy(u => u.Date).LastOrDefault();
                 if ((DateTime.Now - lastPost.Date).TotalDays < 7)
                 {
                     throw new BusinessException("Usted no esta habilitado para publicar.");

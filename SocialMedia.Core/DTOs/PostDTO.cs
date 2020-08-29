@@ -2,7 +2,7 @@
 
 namespace SocialMedia.Core.DTOs
 {
-    public class PostDTO
+    public class PostDto
     {
         public int PostId { get; set; }
         public int UserId { get; set; }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SocialMedia.Core.Entities
 {
-    public partial class User : BaseEntity
+    public sealed class User : BaseEntity
     {
         public User()
         {
@@ -17,7 +17,7 @@ namespace SocialMedia.Core.Entities
         public DateTime DateBirthday { get; set; }
         public string Telephone { get; set; }
         public bool IsActive { get; set; }
-        public virtual ICollection<Comment> Comments { get; set; }
-        public virtual ICollection<Post> Posts { get; set; }
+        public ICollection<Comment> Comments { get; set; }
+        public ICollection<Post> Posts { get; set; }
     }
 }

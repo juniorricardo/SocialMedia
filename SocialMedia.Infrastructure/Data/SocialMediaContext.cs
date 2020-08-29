@@ -4,7 +4,7 @@ using SocialMedia.Infrastructure.Data.Configurations;
 
 namespace SocialMedia.Infrastructure.Data
 {
-    public partial class SocialMediaContext : DbContext
+    public class SocialMediaContext : DbContext
     {
         public SocialMediaContext()
         {

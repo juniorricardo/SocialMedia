@@ -2,30 +2,33 @@
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
+using SocialMedia.Core.Interfaces;
 
 namespace SocialMedia.Api.Helpers
 {
+    public class  EnvironmentVariables : IEnvironmentVariables
     {
-        private readonly IHostingEnvironment hostingEnvironment;
-        public EnvironmentVariables(IHostingEnvironment hostingEnvironment)
+        private readonly IWebHostEnvironment _hostingEnvironment;
+        public EnvironmentVariables(IWebHostEnvironment hostingEnvironment)
         {
-            this.hostingEnvironment = hostingEnvironment;
+            this._hostingEnvironment = hostingEnvironment;
         }
 
         public string GetUrl(string servicio)
         {
-            string appSettingsName = "appsettings";
-            if (hostingEnvironment.IsDevelopment())
+            var appSettingsName = "appsettings";
+            if (_hostingEnvironment.IsDevelopment())
                 appSettingsName = $"{appSettingsName}.Development";
 
-            IConfigurationBuilder builder = new ConfigurationBuilder()
+            var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile($"{appSettingsName}.json");
 
-            IConfigurationRoot configuration = builder.Build();
-            string url = configuration[servicio];
+            var configuration = builder.Build();
+            var url = configuration[servicio];
 
-            return hostingEnvironment.IsProduction()
+            return _hostingEnvironment.IsProduction()
                 ? Environment.GetEnvironmentVariable(url)
                 : url;
         }

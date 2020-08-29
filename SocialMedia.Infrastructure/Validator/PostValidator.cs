@@ -4,7 +4,7 @@ using System;
 
 namespace SocialMedia.Infrastructure.Validator
 {
-    public class PostValidator : AbstractValidator<PostDTO>
+    public class PostValidator : AbstractValidator<PostDto>
     {
         public PostValidator()
         {

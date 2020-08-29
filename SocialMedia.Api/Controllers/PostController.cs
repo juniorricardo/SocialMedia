@@ -34,9 +34,9 @@ namespace SocialMedia.Api.Controllers
         {
             _logger.LogInformation("Obteniendo los Posts.");
             var posts = _postService.GetPosts();
-            var postDtos = _mapper.Map<IEnumerable<PostDTO>>(posts);
+            var postDtos = _mapper.Map<IEnumerable<PostDto>>(posts);
 
-            var response = new ApiResponse<IEnumerable<PostDTO>>(postDtos);
+            var response = new ApiResponse<IEnumerable<PostDto>>(postDtos);
             return Ok(response);
         }
 
@@ -51,27 +51,27 @@ namespace SocialMedia.Api.Controllers
                 return NotFound();
             }
 
-            var postDto = _mapper.Map<PostDTO>(post);
-            var response = new ApiResponse<PostDTO>(postDto);
+            var postDto = _mapper.Map<PostDto>(post);
+            var response = new ApiResponse<PostDto>(postDto);
             return Ok(response);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(PostDTO postDto)
+        public async Task<IActionResult> Post(PostDto postDto)
         {
             var post = _mapper.Map<Post>(postDto);
 
             await _postService.InsertPost(post);
             _logger.LogInformation($"Insertando una publicacion. {post}");
 
-            postDto = _mapper.Map<PostDTO>(post);
-            var response = new ApiResponse<PostDTO>(postDto);
+            postDto = _mapper.Map<PostDto>(post);
+            var response = new ApiResponse<PostDto>(postDto);
 
             return Ok(response);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, PostDTO postDto)
+        public IActionResult Put(int id, PostDto postDto)
         {
             var post = _mapper.Map<Post>(postDto);
             post.Id = id;
