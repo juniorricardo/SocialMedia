@@ -11,31 +11,31 @@ namespace SocialMedia.Infrastructure.Repositories
     public class BaseRespository<T> : IRepository<T> where T : BaseEntity
     {
         private readonly SocialMediaContext _context;
-        protected DbSet<T> _entities;
+        protected readonly DbSet<T> Entities;
 
         public BaseRespository(SocialMediaContext context)
         {
             _context = context;
-            _entities = _context.Set<T>();
+            Entities = _context.Set<T>();
         }
 
         public IEnumerable<T> GetAll()
         {
-            return _entities.AsEnumerable();
+            return Entities.AsEnumerable();
         }
 
         public async Task<T> GetById(int id)
         {
-            return await _entities.FindAsync(id);
+            return await Entities.FindAsync(id);
         }
 
         public async Task Add(T entity)
         {
-            await _entities.AddAsync(entity);
+            await Entities.AddAsync(entity);
         }
         public void Update(T entity)
         {
-            _entities.Update(entity);
+            Entities.Update(entity);
         }
 
         public async Task Delete(int id)

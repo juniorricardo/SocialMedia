@@ -8,7 +8,6 @@ namespace SocialMedia.Infrastructure.Mappings
     {
         public AutomapperProfile()
         {
-            ///CreateMap<Entity, DTO>()
             CreateMap<Post, PostDto>()
                 .ForMember(dest =>
                     dest.PostId,

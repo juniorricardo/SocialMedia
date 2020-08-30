@@ -29,38 +29,30 @@ namespace SocialMedia.Api
         {
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-            services.AddControllers(options =>
-                {
-                    options.Filters.Add<GlobalExceptionFilter>();
-                })
+            services.AddControllers(options => { options.Filters.Add<GlobalExceptionFilter>(); })
                 .AddNewtonsoftJson(option =>
                 {
                     option.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-                }
-                ).ConfigureApiBehaviorOptions(options =>
+                })
+                .ConfigureApiBehaviorOptions(options =>
                 {
                     // options.SuppressModelStateInvalidFilter = true;
-                }
-            );
+                });
 
             // ConnectionString
             services.AddDbContext<SocialMediaContext>(options =>
-               options.UseSqlServer(Configuration.GetConnectionString("SocialMedia"))
-            );
+                options.UseSqlServer(Configuration.GetConnectionString("SocialMedia")));
 
             //Dependencias
             services.AddTransient<IPostService, PostService>();
             services.AddScoped(typeof(IRepository<>), typeof(BaseRespository<>));
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 
-            services.AddMvc(options =>
-            {
-                options.Filters.Add<ValidationFilter>();
-            })
+            services.AddMvc(options => { options.Filters.Add<ValidationFilter>(); })
                 .AddFluentValidation(options =>
-            {
-                options.RegisterValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
-            });
+                {
+                    options.RegisterValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

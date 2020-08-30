@@ -7,7 +7,7 @@ namespace SocialMedia.Core.Exceptions
         public BusinessException(string message)
             :base(message)
         {
-
         }
+        
     }
 }

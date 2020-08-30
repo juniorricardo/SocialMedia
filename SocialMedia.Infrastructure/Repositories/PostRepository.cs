@@ -15,7 +15,7 @@ namespace SocialMedia.Infrastructure.Repositories
 
         public async Task<IEnumerable<Post>> GetPostsByUser(int userId)
         {
-            return await _entities.Where(post => 
+            return await Entities.Where(post => 
                                     post.UserId.Equals(userId))
                                   .ToListAsync();
         }
