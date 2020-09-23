@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SocialMedia.Core.Entities
-{
-    public sealed class User : BaseEntity
-    {
-        public User()
-        {
-            Comments = new HashSet<Comment>();
-            Posts = new HashSet<Post>();
+namespace SocialMedia.Core.Entities {
+    public sealed class User : BaseEntity {
+        public User () {
+            Comments = new HashSet<Comment> ();
+            Posts = new HashSet<Post> ();
         }
 
         public string FirstName { get; set; }

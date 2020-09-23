@@ -1,9 +1,7 @@
 ﻿using System;
 
-namespace SocialMedia.Core.Entities
-{
-    public class Comment : BaseEntity
-    {
+namespace SocialMedia.Core.Entities {
+    public class Comment : BaseEntity {
         public int PostId { get; set; }
         public int UserId { get; set; }
         public string Description { get; set; }

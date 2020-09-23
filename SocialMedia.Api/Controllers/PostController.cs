@@ -30,7 +30,9 @@ namespace SocialMedia.Api.Controllers
 
         // GET  api/post
         [HttpGet]
-        public IActionResult GetPosts(int? userId, DateTime? date, string description)
+        public IActionResult GetPosts(int? userId,
+            DateTime? date,
+            string description)
         {
             _logger.LogInformation("Obteniendo los Posts.");
             var posts = _postService.GetPosts();
@@ -71,7 +73,8 @@ namespace SocialMedia.Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, PostDto postDto)
+        public IActionResult Put(int id,
+            PostDto postDto)
         {
             var post = _mapper.Map<Post>(postDto);
             post.Id = id;

@@ -10,8 +10,7 @@ namespace SocialMedia.Infrastructure.Data
         {
         }
 
-        public SocialMediaContext(DbContextOptions<SocialMediaContext> options)
-            : base(options)
+        public SocialMediaContext(DbContextOptions<SocialMediaContext> options) : base(options)
         {
         }
 

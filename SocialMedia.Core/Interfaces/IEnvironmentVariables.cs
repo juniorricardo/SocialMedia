@@ -1,7 +1,5 @@
-﻿namespace SocialMedia.Core.Interfaces
-{
-    public interface IEnvironmentVariables
-    {
-        string GetUrl(string servicio);
+﻿namespace SocialMedia.Core.Interfaces {
+    public interface IEnvironmentVariables {
+        string GetUrl (string servicio);
     }
 }

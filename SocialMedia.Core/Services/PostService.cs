@@ -6,11 +6,11 @@ using SocialMedia.Core.Entities;
 using SocialMedia.Core.Exceptions;
 using SocialMedia.Core.Interfaces;
 
-namespace SocialMedia.Core.Services
-{
+namespace SocialMedia.Core.Services {
     public class PostService : IPostService
     {
         private readonly IUnitOfWork _unitOfWork;
+
         public PostService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -20,6 +20,7 @@ namespace SocialMedia.Core.Services
         {
             return _unitOfWork.PostRespository.GetAll();
         }
+
         public async Task<Post> GetPost(int id)
         {
             return await _unitOfWork.PostRespository.GetById(id);
@@ -34,17 +35,16 @@ namespace SocialMedia.Core.Services
             }
 
             var userPosts = await _unitOfWork.PostRespository.GetPostsByUser(user.Id);
-            List<Post> list = new List<Post>();
-            foreach (var userPost in userPosts) list.Add(userPost);
-            IEnumerable<Post> enumerable = userPosts as Post[] ?? list.ToArray();
+            IEnumerable<Post> enumerable = userPosts as Post[] ?? userPosts.ToArray();
             if (enumerable.Count() < 10)
             {
                 var lastPost = enumerable.OrderBy(u => u.Date).LastOrDefault();
-                if ((DateTime.Now - lastPost.Date).TotalDays < 7)
+                if (lastPost != null && (DateTime.Now - lastPost.Date).TotalDays < 7)
                 {
                     throw new BusinessException("Usted no esta habilitado para publicar.");
                 }
             }
+
             if (post.Description.Contains("sexo"))
             {
                 throw new BusinessException("Contenido no permitido.");
@@ -52,7 +52,6 @@ namespace SocialMedia.Core.Services
 
             await _unitOfWork.PostRespository.Add(post);
             await _unitOfWork.SaveChangesAsync();
-
         }
 
         public bool UpdatePost(Post post)

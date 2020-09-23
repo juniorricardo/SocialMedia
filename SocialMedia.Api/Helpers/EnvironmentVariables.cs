@@ -7,9 +7,10 @@ using SocialMedia.Core.Interfaces;
 
 namespace SocialMedia.Api.Helpers
 {
-    public class  EnvironmentVariables : IEnvironmentVariables
+    public class EnvironmentVariables : IEnvironmentVariables
     {
         private readonly IWebHostEnvironment _hostingEnvironment;
+
         public EnvironmentVariables(IWebHostEnvironment hostingEnvironment)
         {
             this._hostingEnvironment = hostingEnvironment;

@@ -8,7 +8,7 @@ namespace SocialMedia.Infrastructure.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Comment> builder)
         {
-            builder.ToTable("Comentario");   //EF asume que el nombre de la tabla es como se encuentra en la linea 19
+            builder.ToTable("Comentario"); //EF asume que el nombre de la tabla es como se encuentra en la linea 19
 
             builder.HasKey(e => e.Id);
 
